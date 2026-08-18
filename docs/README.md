@@ -76,6 +76,21 @@ npm run dev
 Um evento de exemplo ("Show de Teste — Banda Exemplo") já é publicado com
 ingressos disponíveis.
 
+## Testando o que já está implementado
+
+Com o backend no ar (`docker compose up` ou `npm run dev`), rode o smoke test
+end-to-end contra auth + events:
+
+```bash
+cd backend
+npm run test:smoke
+```
+
+Ele cria usuários de teste com email único a cada execução, testa os fluxos
+de sucesso e os de erro esperado (RBAC, senha errada, email duplicado, role
+inválida), e imprime um resumo `Passou / Falhou` no final. Saída não-zero se
+algo falhar — dá pra usar em CI mais tarde.
+
 ## Endpoints — Auth
 
 | Método | Rota | Papel | Descrição |
@@ -85,17 +100,30 @@ ingressos disponíveis.
 
 Rotas protegidas esperam o header `Authorization: Bearer <token>`.
 
+## Endpoints — Eventos
+
+| Método | Rota | Papel | Descrição |
+|---|---|---|---|
+| GET | `/events/catalog?source=ticketmaster\|tmdb&query=` | Organizador | Busca no catálogo externo |
+| GET | `/events/mine` | Organizador | Lista os próprios eventos (qualquer status) |
+| POST | `/events` | Organizador | Cria evento publicado |
+| PATCH | `/events/:id/cancel` | Organizador (dono) | Cancela o evento |
+| GET | `/events?search=&location=&type=&dateFrom=&dateTo=&minPrice=&maxPrice=` | Público | Lista eventos publicados, com filtros |
+| GET | `/events/:id` | Público | Detalhe de um evento |
+
 ## Status do projeto
 
 > Esta seção será atualizada conforme os módulos forem implementados.
 >
 > - [x] Setup do projeto (estrutura, schema, Docker)
 > - [x] Auth (registro, login, JWT, RBAC)
-> - [ ] Eventos (organizador + busca do cliente)
-> - [ ] Reservas e pagamento simulado
-> - [ ] Ingressos (QR) e compartilhamento
-> - [ ] Portaria (validação)
+> - [x] Eventos (catálogo externo, CRUD do organizador, busca do cliente)
+> - [x] Reservas e pagamento simulado
+> - [x] Ingressos (QR) e compartilhamento
+> - [x] Portaria (validação)
 
 ## O que não está implementado / limitações conhecidas
 
-> A preencher conforme o desenvolvimento avança.
+> - [] Front-end: Sair do placeholder inicial e implementar as telas reais, personalização e estruturação base inicial.
+> - [] Personalização e estilização do Front-end
+> - [] Opcionais (Bônus) Deploy, mapa de assentos em tempo real, etc.

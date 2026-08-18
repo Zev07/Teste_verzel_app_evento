@@ -6,6 +6,10 @@ import { PrismaClient } from "@prisma/client";
 import { logger } from "./utils/logger";
 import { errorHandler } from "./middlewares/errorHandler";
 import { authRoutes } from "./modules/auth/routes/auth.routes";
+import { eventsRoutes } from "./modules/events/routes/events.routes";
+import { reservationsRoutes } from "./modules/reservations/routes/reservations.routes";
+import { ticketsRoutes } from "./modules/tickets/routes/tickets.routes";
+import { gateRoutes } from "./modules/gate/routes/gate.routes";
 
 const app = express();
 const prisma = new PrismaClient();
@@ -29,9 +33,10 @@ app.get("/health", async (_req, res) => {
 
 // TODO: registrar rotas dos módulos aqui conforme forem implementados
 app.use("/auth", authRoutes);
-// app.use("/events", eventsRoutes);
-// app.use("/reservations", reservationsRoutes);
-// app.use("/tickets", ticketsRoutes);
+app.use("/events", eventsRoutes);
+app.use("/reservations", reservationsRoutes);
+app.use("/tickets", ticketsRoutes);
+app.use("/gate", gateRoutes);
 
 // Error handler sempre por último — depois de todas as rotas.
 app.use(errorHandler);
