@@ -37,6 +37,8 @@ app.use("/events", eventsRoutes);
 app.use("/reservations", reservationsRoutes);
 app.use("/tickets", ticketsRoutes);
 app.use("/gate", gateRoutes);
+app.use(cors());
+app.use(express.json());
 
 // Error handler sempre por último — depois de todas as rotas.
 app.use(errorHandler);

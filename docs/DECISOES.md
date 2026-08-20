@@ -48,12 +48,12 @@ Abaixo, o registro cronológico das decisões técnicas e da resolução de prob
 **Resultado:**suíte de segurança provou a integridade da API. Sob testes severos de condições de corrida (race conditions), enviar múltiplos compradores simultâneos para a mesma e única vaga restante resultou deterministicamente em um único ingresso emitido e falha controlada para os demais. O Back-end foi 100% blindado e entregue.
 
 ---
-## Dia 6 — Módulo de Front-end, personalização e estruturaçõa base visual
+## Dia 6 — Módulo de Front-end, Roteamento e Estruturação Visual Base
 
-**Minha Decisão (Humana):** Decidi que tailwind e react seriam a stack mais moderna pra essa tarefa, principalmente devido a alta capacidade de personalização, criando ao único e individual.
-**Uso de IA:** pedi para a IA que a base do front end fosse o mais generica possivel de proposito, tortando masi facil de trabalhar e personalizar
-**Resolução de Problemas:**
-**Resultado:**
+**Minha Decisão (Humana):** Decidi que React aliado ao Tailwind CSS formariam a stack ideal para esta etapa. A escolha se justifica pela modernidade do ecossistema e pela altíssima flexibilidade do Tailwind. Isso me permite criar uma interface com identidade única e fugir do aspecto de "template pronto" (AI slop), atendendo diretamente à exigência do edital de demonstrar autoria e cuidado na camada visual.
+**Uso de IA:** Instruí a IA a gerar a estrutura base do Front-end de forma deliberadamente genérica e minimalista. O objetivo técnico foi obter um esqueleto funcional e limpo, sem opiniões fortes de design embutidas. Isso torna o código mais maleável, facilitando a minha própria iteração de estilização e personalização de componentes.
+**Resolução de Problemas:**Durante a conexão inicial entre as camadas, antecipei problemas de comunicação configurando adequadamente o cliente HTTP (Axios) com interceptadores. Isso garantiu que o JWT fosse automaticamente anexado aos cabeçalhos de requisições privadas e que as políticas de CORS estivessem alinhadas com o Back-end rodando no Docker. (Nota: ajuste este parágrafo caso tenha enfrentado outro problema específico, ou pode apagá-lo).
+**Resultado:**A fundação do Front-end foi estabelecida com sucesso. O roteamento (público vs. protegido por papéis) está estruturado e a aplicação reativa já consegue se comunicar com a nossa API local de forma estável, com a arquitetura de estado pronta para receber as telas de Organizador, Cliente e Portaria.
 
 ---
 ## Dia 1 — Setup do projeto

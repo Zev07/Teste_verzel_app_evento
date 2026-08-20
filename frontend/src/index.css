@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* 1. Customização do Tema */
+@theme {
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb; 
+  --color-brand-700: #1d4ed8; 
+  --color-brand-900: #1e3a8a;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* 2. Estilos Base */
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased font-sans;
+  }
+}
+
+/* 3. Componentes Reutilizáveis */
+@layer components {
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all duration-200 placeholder:text-gray-400;
+  }
+
+  .label-field {
+    @apply block text-sm font-semibold text-gray-700 mb-2;
+  }
+
+  /* Agrupamos os seletores aqui para compartilhar a base sem quebrar o @apply */
+  .btn, .btn-primary, .btn-outline {
+    @apply inline-flex items-center justify-center font-bold rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-brand-600 text-white hover:bg-brand-700 shadow-sm hover:shadow-md active:scale-95;
+  }
+  
+  .btn-outline {
+    @apply px-6 py-3 border-2 border-brand-600 text-brand-600 hover:bg-brand-50 active:scale-95;
+  }
+}
