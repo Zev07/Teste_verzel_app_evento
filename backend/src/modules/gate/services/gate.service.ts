@@ -14,11 +14,11 @@ interface TicketRow {
 
 export const gateService = {
   async validate(gateUserId: string, input: ValidateTicketInput) {
-    const { valid, ticketId } = verifyQrToken(input.qrToken);
+  const { valid, ticketId } = verifyQrToken(input.qrToken);
 
-    if (!valid || !ticketId) {
-      return { result: "INVALID" as ValidationResult, message: "Código inválido ou corrompido" };
-    }
+  if (!valid || !ticketId) {
+    return { result: "INVALID", message: "Código inválido ou corrompido" };
+  }
 
     return prisma.$transaction(async (tx) => {
       // Lock na linha do ingresso: se o mesmo QR for escaneado duas vezes

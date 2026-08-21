@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import helmet from 'helmet';
 import pinoHttp from "pino-http";
 import { PrismaClient } from "@prisma/client";
 import { logger } from "./utils/logger";
@@ -11,6 +12,7 @@ import { reservationsRoutes } from "./modules/reservations/routes/reservations.r
 import { ticketsRoutes } from "./modules/tickets/routes/tickets.routes";
 import { gateRoutes } from "./modules/gate/routes/gate.routes";
 
+
 const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3333;
@@ -18,6 +20,8 @@ const PORT = process.env.PORT || 3333;
 app.use(cors());
 app.use(express.json());
 app.use(pinoHttp({ logger }));
+app.use(helmet());
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 // Health check: usado pelo Docker Compose e por qualquer plataforma de deploy
 // para saber se o serviço está de pé E consegue falar com o banco.

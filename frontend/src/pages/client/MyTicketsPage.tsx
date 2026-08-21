@@ -40,7 +40,7 @@ export const MyTicketsPage = () => {
         return <span className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-full">{status}</span>;
     }
   };
-
+  
   return (
     <div className="min-h-screen bg-gray-50 pb-12 animate-in fade-in duration-500">
       
