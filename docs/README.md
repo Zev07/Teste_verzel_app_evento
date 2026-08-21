@@ -5,6 +5,20 @@ publica eventos a partir de um catálogo externo (Ticketmaster ou TMDb), o
 cliente navega, reserva, paga (simulado), recebe o ingresso com QR e pode
 compartilhá-lo por link; a portaria valida o ingresso na entrada.
 
+## Uso de IA
+
+Usei IA (Claude e Gemini) como ferramenta de implementação em praticamente
+todo o código, atuando eu mesmo como arquiteto/tech lead: defini modelagem de
+dados, regras de negócio críticas (transações, RBAC, assinatura do QR),
+revisei e corrigi decisões da IA quando erradas (ex: o HMAC do QR
+originalmente misturava `ticketId + eventId`, o que impedia distinguir "QR
+inválido" de "QR de outro evento" — corrigi isso), e conduzi a auditoria de
+segurança (`test:security`) que valida overselling, IDOR e condição de
+corrida real.
+
+Histórico completo, dia a dia, com o que foi decisão minha, onde a IA ajudou,
+e os problemas encontrados e corrigidos: **[`docs/DECISOES.md`](./docs/DECISOES.md)**.
+
 ## Escopo
 
 | Papel | O que faz |
